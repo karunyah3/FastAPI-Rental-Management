@@ -4,8 +4,9 @@ from dotenv import load_dotenv
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.engine import URL
 
-# Load environment variables from .env
+# Load environment variables
 load_dotenv()
 
 # Read database credentials
@@ -19,8 +20,6 @@ if not DB_PASSWORD:
     raise ValueError("DB_PASSWORD is missing from .env")
 
 # Create PostgreSQL connection
-from sqlalchemy.engine import URL
-
 DATABASE_URL = URL.create(
     drivername="postgresql+psycopg",
     username=DB_USER,
@@ -39,5 +38,14 @@ SessionLocal = sessionmaker(
     autocommit=False
 )
 
-# Base class for database models
+# Base class
 Base = declarative_base()
+
+
+# Database dependency
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

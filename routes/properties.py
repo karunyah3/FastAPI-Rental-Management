@@ -2,6 +2,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
+
+from datetime import date
+from models.lease import Lease
+
 from database.connection import SessionLocal
 from models.property import Property
 from models.owner import Owner
@@ -124,3 +128,35 @@ def delete_property(
     db.commit()
 
     return {"message": "Property deleted successfully"}
+
+# CHECK PROPERTY AVAILABILITY
+@router.get("/{property_id}/availability")
+def check_property_availability(
+    property_id: int,
+    db: Session = Depends(get_db)
+):
+
+    property = db.query(Property).filter(
+        Property.id == property_id
+    ).first()
+
+    if not property:
+        raise HTTPException(
+            status_code=404,
+            detail="Property not found"
+        )
+
+    today = date.today()
+
+    active_lease = db.query(Lease).filter(
+        Lease.property_id == property_id,
+        Lease.status == "Active",
+        Lease.start_date <= today,
+        Lease.end_date >= today
+    ).first()
+
+    return {
+        "property_id": property_id,
+        "available": active_lease is None,
+        "status": "Rented" if active_lease else "Available"
+    }

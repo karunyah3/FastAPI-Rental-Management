@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties - RentEase</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2 class="logo">RentEase</h2>
+        <p class="menu-heading">MAIN MENU</p>
+
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="owners.html" class="nav-link">Owners</a>
+        <a href="properties.html" class="nav-link active">Properties</a>
+        <a href="tenants.html" class="nav-link">Tenants</a>
+        <a href="leases.html" class="nav-link">Leases</a>
+    </aside>
+
+    <main class="main-content">
+        <h1>Properties Management</h1>
+        <p>Manage rental properties here.</p>
+
+        <div class="content-card">
+            <h2>Add Property</h2>
+
+            <form id="propertyForm">
+                <input type="hidden" id="propertyId">
+
+                <input type="number" id="propertyOwner" placeholder="Owner ID" required>
+                <input type="text" id="propertyTitle" placeholder="Property Title" required>
+                <input type="text" id="propertyAddress" placeholder="Address" required>
+
+                <select id="propertyType" required>
+                    <option value="">Select Property Type</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="House">House</option>
+                    <option value="Villa">Villa</option>
+                    <option value="Commercial">Commercial</option>
+                </select>
+
+                <input type="number" id="propertyRent" placeholder="Monthly Rent" min="1" required>
+
+                <select id="propertyStatus" required>
+                    <option value="Available">Available</option>
+                    <option value="Rented">Rented</option>
+                </select>
+
+                <button type="submit">Save Property</button>
+            </form>
+
+            <div id="propertyMessage"></div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Owner ID</th>
+                        <th>Title</th>
+                        <th>Address</th>
+                        <th>Type</th>
+                        <th>Rent</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="propertyManagementTable"></tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/properties.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leases - RentEase</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2 class="logo">RentEase</h2>
+        <p class="menu-heading">MAIN MENU</p>
+
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="owners.html" class="nav-link">Owners</a>
+        <a href="properties.html" class="nav-link">Properties</a>
+        <a href="tenants.html" class="nav-link">Tenants</a>
+        <a href="leases.html" class="nav-link active">Leases</a>
+    </aside>
+
+    <main class="main-content">
+        <h1>Leases Management</h1>
+        <p>Manage property rental agreements here.</p>
+
+        <div class="content-card">
+            <h2>Add Lease</h2>
+
+            <form id="leaseForm">
+                <input type="hidden" id="leaseId">
+
+                <input type="number" id="leaseProperty" placeholder="Property ID" required>
+                <input type="number" id="leaseTenant" placeholder="Tenant ID" required>
+
+                <label for="leaseStart">Start Date</label>
+                <input type="date" id="leaseStart" required>
+
+                <label for="leaseEnd">End Date</label>
+                <input type="date" id="leaseEnd" required>
+
+                <input type="number" id="leaseRent" placeholder="Monthly Rent" min="1" required>
+
+                <select id="leaseStatus" required>
+                    <option value="Active">Active</option>
+                    <option value="Terminated">Terminated</option>
+                    <option value="Expired">Expired</option>
+                </select>
+
+                <button type="submit">Save Lease</button>
+            </form>
+
+            <div id="leaseMessage"></div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Property ID</th>
+                        <th>Tenant ID</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Monthly Rent</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="leaseTable"></tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/leases.js"></script>
+</body>
+</html>

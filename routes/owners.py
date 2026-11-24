@@ -42,24 +42,6 @@ def get_owner(owner_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Owner not found")
     return owner
 
-# UPDATE owner
-@router.put("/{owner_id}", response_model=OwnerResponse)
-def update_owner(owner_id: int, data: OwnerCreate, db: Session = Depends(get_db)):
-    owner = db.query(Owner).filter(Owner.id == owner_id).first()
-    if not owner:
-        raise HTTPException(status_code=404, detail="Owner not found")
-
-    if data.email != owner.email:
-        existing = db.query(Owner).filter(Owner.email == data.email).first()
-        if existing:
-            raise HTTPException(status_code=400, detail="Email already exists")
-
-    for key, value in data.model_dump().items():
-        setattr(owner, key, value)
-
-    db.commit()
-    db.refresh(owner)
-    return owner
 
 # DELETE owner
 @router.delete("/{owner_id}")
@@ -72,18 +54,7 @@ def delete_owner(owner_id: int, db: Session = Depends(get_db)):
     db.commit()
     return {"message": "Owner deleted successfully"}
 
-# READ one owner by ID
-@router.get("/{owner_id}", response_model=OwnerResponse)
-def get_owner(owner_id: int, db: Session = Depends(get_db)):
-    owner = db.query(Owner).filter(Owner.id == owner_id).first()
 
-    if not owner:
-        raise HTTPException(
-            status_code=404,
-            detail="Owner not found"
-        )
-
-    return owner
 
 # UPDATE owner
 @router.put("/{owner_id}", response_model=OwnerResponse)
@@ -119,20 +90,3 @@ def update_owner(
 
     return owner
 
-
-
-# DELETE owner
-@router.delete("/{owner_id}")
-def delete_owner(owner_id: int, db: Session = Depends(get_db)):
-    owner = db.query(Owner).filter(Owner.id == owner_id).first()
-
-    if not owner:
-        raise HTTPException(
-            status_code=404,
-            detail="Owner not found"
-        )
-
-    db.delete(owner)
-    db.commit()
-
-    return {"message": "Owner deleted successfully"}

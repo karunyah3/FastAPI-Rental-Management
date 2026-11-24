@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenants - RentEase</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2 class="logo">RentEase</h2>
+        <p class="menu-heading">MAIN MENU</p>
+
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="owners.html" class="nav-link">Owners</a>
+        <a href="properties.html" class="nav-link">Properties</a>
+        <a href="tenants.html" class="nav-link active">Tenants</a>
+        <a href="leases.html" class="nav-link">Leases</a>
+    </aside>
+
+    <main class="main-content">
+        <h1>Tenants Management</h1>
+        <p>Manage registered tenants here.</p>
+
+        <div class="content-card">
+            <h2>Add Tenant</h2>
+
+            <form id="tenantForm">
+                <input type="hidden" id="tenantId">
+
+                <input type="text" id="tenantName" placeholder="Tenant Name" required>
+                <input type="email" id="tenantEmail" placeholder="Email" required>
+                <input type="text" id="tenantPhone" placeholder="Phone" required>
+                <input type="text" id="tenantAddress" placeholder="Address" required>
+
+                <button type="submit">Save Tenant</button>
+            </form>
+
+            <div id="tenantMessage"></div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tenantTable"></tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/tenants.js"></script>
+</body>
+</html>

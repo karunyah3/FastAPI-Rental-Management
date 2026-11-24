@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owners - RentEase</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2 class="logo">RentEase</h2>
+        <p class="menu-heading">MAIN MENU</p>
+
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="owners.html" class="nav-link active">Owners</a>
+        <a href="properties.html" class="nav-link">Properties</a>
+        <a href="tenants.html" class="nav-link">Tenants</a>
+        <a href="leases.html" class="nav-link">Leases</a>
+    </aside>
+
+    <main class="main-content">
+        <h1>Owners Management</h1>
+        <p>Manage property owners here.</p>
+
+        <div class="content-card">
+            <h2>Owners</h2>
+
+            <form id="ownerForm">
+                <input type="hidden" id="ownerId">
+
+                <input type="text" id="ownerName" placeholder="Owner Name" required>
+                <input type="email" id="ownerEmail" placeholder="Email" required>
+                <input type="text" id="ownerPhone" placeholder="Phone" required>
+                <input type="text" id="ownerAddress" placeholder="Address" required>
+
+                <button type="submit">Save Owner</button>
+            </form>
+
+            <div id="ownerMessage"></div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="ownerTable"></tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/owners.js"></script>
+</body>
+</html>
